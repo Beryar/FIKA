@@ -55,7 +55,7 @@
         const inputItem = document.getElementById('inputItem'); // Input field for new items
         ctx.font = '15px Georgia ';
         
-        let slices = ["Bryar" ,'Natascha' ,'David' ,'Luc' ,'Sem' ,'Leslie' ,'Redewan' ,'Chiara' ,'Nina' ,'Nick' ,'Ben' ,'Robert' ,'Tjesse' ,'Jens' ,'Maaike' ,'Iris' ,'Birte' ,'Christina' ,'Maariska' ,'Moshe' ,'Marlon' ,'Martijn' ,'Noelle' ,'Chantal', 'Barbra', 'Maartje']; // Default items
+        let slices = ["Bryar" ,'Natascha' ,'David' ,'Luc' ,'Sem' ,'Leslie' ,'Redwan' ,'Chiara' ,'Nina' ,'Nick' ,'Ben' ,'Robert' ,'Tjesse' ,'Jens' ,'Maaike' ,'Iris' ,'Birte' ,'Christina' ,'Maariska' ,'Moshe' ,'Marlon' ,'Martijn' ,'Noelle' ,'Chantal', 'Barbra', 'Maartje']; // Default items
         let startAngle = 0;
         let arc = Math.PI / (slices.length / 2);
         let spinTimeout = null;
@@ -136,10 +136,7 @@
         
         // Function to stop the rotation and determine the winner
         function stopRotateWheel() {
-            clearTimeout(spinTimeout);
-            let degrees = startAngle * 180 / Math.PI + 90;
-            let arcd = arc * 180 / Math.PI;
-            let index = Math.floor((360 - degrees % 360) / arcd);
+            let index = Math.floor(Math.random() * slices.length);
 
             ctx.save();
             chosenSlice = index;  // Set the chosen slice
@@ -150,6 +147,7 @@
             resultDisplay.style.color = "green"; // Change the color of the result
             resultDisplay.style.fontSize = "30PX"; // Change the color of the result
             resultDisplay.style.fontFamily = " Arial, sans-serif"; // Change the color of the result
+            slices.splice(index, 1);
             ctx.restore();
         }
 
